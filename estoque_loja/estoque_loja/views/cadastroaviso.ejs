@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Sistema de controle de estoque.">
+    <meta name="author" content="Edson Luiz Fragnan">
+
+    <title>Administrativo - Estoque loja.</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/sb-admin.css" rel="stylesheet">
+    <link href="css/plugins/morris.css" rel="stylesheet">
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/index">Estoque loja</a>
+            </div>
+
+            <ul class="nav navbar-right top-nav">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-user"></i> <%= user.nome %> <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                        <li>
+                            <a href="/profile"><i class="fa fa-fw fa-user"></i> Perfil</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="/logout"><i class="fa fa-fw fa-power-off"></i> Sair</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    <li>
+                      <a href="/index"><span class="glyphicon glyphicon-home"></span> Início</a>
+                    </li>
+                    <li>
+                      <a href="/listaprodutos"><span class="glyphicon glyphicon-menu-right"></span> Lista produtos</a>
+                    </li>
+                    <li>
+                      <a href="/cadastroproduto"><span class="glyphicon glyphicon-menu-right"></span> Cadastro produto</a>
+                    </li>
+                    <li>
+                      <a href="/cadastrousuario"><span class="glyphicon glyphicon-menu-right"></span> Cadastro usuário</a>
+                    </li>
+                    <li class="active">
+                      <a href="/cadastroaviso"><span class="glyphicon glyphicon-menu-right"></span> Cadastro aviso</a>
+                    </li>
+                    <li>
+                      <a href="/meusavisos"><span class="glyphicon glyphicon-menu-right"></span> Meus avisos</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div id="page-wrapper">
+
+            <div class="container-fluid">
+
+              <div class="row">
+                  <div class="col-lg-12">
+                    <div class="col-lg-12">
+                      <h1 class="page-header">
+                          Cadastro de aviso <small>cadastro de aviso</small>
+                      </h1>
+                      <ol class="breadcrumb">
+                          <li class="active">
+                              <i class="glyphicon glyphicon-menu-right"></i> Cadastro aviso
+                          </li>
+                      </ol>
+                    </div>
+                    <br />
+                    <form action="/cadastroaviso" method="post">
+                      <div class="col-lg-6">
+                        <div class="form-group">
+                    			<label>
+                    				<span>Título:</span>
+                    			</label>
+                          <input type="text" class="form-control" name="titulo" placeholder="Título" required>
+                    		</div>
+                      </div>
+
+                      <div class="col-lg-12">
+                        <div class="form-group">
+                          <label>Aviso</label>
+                          <textarea class="form-control" rows="10" name="descricao" placeholder="Descreva o aviso." required></textarea>
+                        </div>
+                      </div>
+
+                      <div class="col-lg-12">
+                        <hr>
+                        <button type="submit" class="btn btn-info btn-lg">Salvar</button>
+                      </div>
+                    </form>
+                </div>
+              </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

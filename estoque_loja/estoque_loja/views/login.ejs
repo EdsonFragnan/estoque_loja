@@ -1,0 +1,52 @@
+<!-- views/login.ejs -->
+<!doctype html>
+<html>
+<head>
+	<title>Login - Estoque Loja</title>
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css"> <!-- load bootstrap css -->
+	<link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css"> <!-- load fontawesome -->
+	<style>
+		body 		{ padding-top:80px; }
+		.numeroMatricula {
+			padding-left: 5px;
+		}
+		.iConSenha {
+			padding-left: 5px;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+
+<div class="col-sm-6 col-sm-offset-3">
+
+	<h1><span class="fa fa-sign-in"></span> Entrar</h1>
+	<br>
+	<!-- show any messages that come back with authentication -->
+	<% if (message.length > 0) { %>
+		<div class="alert alert-danger"><%= message %></div>
+	<% } %>
+
+	<!-- LOGIN FORM -->
+	<form action="/login" method="post">
+		<div class="form-group">
+			<label>
+				<span class="glyphicon glyphicon-user"></span>
+				<span class="numeroMatricula">Matrícula</span>
+			</label>
+			<input type="text" class="form-control" name="matricula">
+		</div>
+		<div class="form-group">
+			<span class="glyphicon glyphicon-lock"></span>
+			<label class="iConSenha">Senha</label>
+			<input type="password" class="form-control" name="senha">
+		</div>
+		<hr />
+		<button type="submit" class="btn btn-info btn-lg">Entrar</button>
+	</form>
+
+</div>
+
+</div>
+</body>
+</html>
