@@ -22,6 +22,13 @@ app.configure(() => {
   app.use(passport.initialize());
   app.use(passport.session());
   app.use(flash());
+  app.use(function(req, res, next ) {
+    if (req.query._method == 'DELETE') {
+        req.method = 'DELETE';
+        req.url = req.path;
+    }
+    next();
+  });
 });
 
 require('./app/routes.js')(app, passport);

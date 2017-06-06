@@ -23,6 +23,15 @@
         text-align: center;
       }
     </style>
+
+    <script>
+      function valProduto(id) {
+        $("#btnDeletar").html(
+          '<button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>' +
+          '<a type="button" class="btn btn-danger deletaAviso" href="/listaprodutos/'+id+'?_method=DELETE">Remover</a>'
+        );
+      }
+    </script>
 </head>
 
 <body>
@@ -122,7 +131,11 @@
                                  <td><%= produtos[i].quantidade %></td>
                                  <td><%= produtos[i].data_cadastro %></td>
                                  <td><%= produtos[i].cadastro %></td>
-                                 <td><span class="glyphicon glyphicon-trash"></span></td>
+                                 <td>
+                                   <a type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger deletaAviso" id="<%= produtos[i].id %>" onclick="valProduto(this.id)">
+                                     <span class="glyphicon glyphicon-trash"></span>
+                                   </a>
+                                 </td>
                             </tr>
                           <% } %>
                         </tbody>
@@ -134,6 +147,23 @@
 
         </div>
 
+    </div>
+
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+            <h3>Deseja deletar o produto?</h3>
+          </div>
+          <div class="modal-footer" id="btnDeletar"></div>
+        </div>
+
+      </div>
     </div>
 
     <script src="js/jquery.js"></script>

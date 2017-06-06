@@ -22,6 +22,12 @@
       .table tbody tr td {
         text-align: center;
       }
+      .aviso {
+        text-align: center;
+      }
+      .deletaAviso {
+        float: right;
+      }
     </style>
 </head>
 
@@ -101,25 +107,26 @@
                           <div class="alert alert-warning aviso"><h2><%= mensagem %></h2></div>
                       </div>
                     <% } else{ %>
-                      <% for(var inter=0; inter<avisosRes.length; inter++) {%>
+                      <% for(var i=0; i<avisosRes.length; i++) {%>
                         <div class="col-lg-4">
                             <div class="panel panel-primary">
                                 <div class="panel-heading">
-                                    <h3 class="panel-title"><i class="glyphicon glyphicon-comment"></i> <%= avisosRes[inter].titulo %></h3>
+                                    <h3 class="panel-title"><i class="glyphicon glyphicon-comment"></i> <%= avisosRes[i].titulo %></h3>
                                 </div>
                                 <div class="panel-body">
                                     <div id="morris-bar-chart">
                                       <p>
-                                        <%= avisosRes[inter].descricao %>
+                                        <%= avisosRes[i].descricao %>
                                       </p>
                                       <hr>
                                       <span>
                                         <strong>
-                                          Autor: <%= avisosRes[inter].nome %>
+                                          Autor: <%= avisosRes[i].nome %>
                                         </strong>
                                       </span>
                                       <br>
-                                      <span>Data: <%= avisosRes[inter].data %></span>
+                                      <span>Data: <%= avisosRes[i].data %></span>
+                                      <a type="button" class="btn btn-danger deletaAviso" href="/meusavisos/<%= avisosRes[i].id_aviso %>?_method=DELETE">Remover</a>
                                     </div>
                                 </div>
                             </div>

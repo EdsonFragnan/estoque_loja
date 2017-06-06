@@ -18,7 +18,8 @@ module.exports.cadastroAviso = (req, res, callback) => {
     "data": dataAtualFormatada(),
     "titulo": req.body.titulo,
     "descricao": req.body.descricao,
-    "id_cadastro": req.user.cpf
+    "id_cadastro": req.user.cpf,
+    "id_aviso": req.body.id_aviso
   };
   db.insertOne(request, 'estoque_avisos', function(err, avisos) {
     if (err) {

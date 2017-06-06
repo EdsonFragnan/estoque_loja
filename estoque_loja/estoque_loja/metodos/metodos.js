@@ -29,7 +29,7 @@ module.exports = {
     });
   },
 
-  findOneAvisos: (collect, id, callback) => {
+  findAvisos: (collect, id, callback) => {
     const acessC = {
       'id': id,
       'collectionAcc': collect
@@ -38,7 +38,7 @@ module.exports = {
       if (err) {
         callback(err, null);
       } else {
-        operations.execFindOneAvisos(db, acessC, (err, data) => {
+        operations.execFindAvisos(db, acessC, (err, data) => {
           if (err) {
             callback(err, null);
           } else {
@@ -71,6 +71,22 @@ module.exports = {
         callback(err, null);
       } else {
         operations.execInsertOne(db, collectionAccess, request, (err, data) => {
+          if (err) {
+            callback(err, null);
+          } else {
+            callback(null, data);
+          }
+        });
+      }
+    });
+  },
+
+  deleteOne: (request, collectionAccess, callback) => {
+    access((err, db) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        operations.execDeleteOne(db, collectionAccess, request, (err, data) => {
           if (err) {
             callback(err, null);
           } else {

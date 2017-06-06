@@ -12,11 +12,8 @@ module.exports = {
     });
   },
 
-  execFindOneAvisos: (db, req, callback) => {
-    const object = {
-      'id_cadastro': req.id
-    };
-    db.collection(req.collectionAcc.toString()).findOne(object, (err, data) => {
+  execFindAvisos: (db, req, callback) => {
+    db.collection(req.collectionAcc.toString()).find({"id_cadastro": {$eq: req.id}}).toArray((err, data) => {
       if (err) {
         callback(err, null);
       } else {
@@ -45,4 +42,14 @@ module.exports = {
       }
     });
   },
+
+  execDeleteOne: (db, collectionAccess, req, callback) => {
+    db.collection(collectionAccess).deleteOne(req, (err, data) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, data);
+      }
+    });
+  }
 }

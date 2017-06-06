@@ -2,7 +2,7 @@ const db = require('../../metodos/metodos.js');
 
 module.exports.meusAvisos = (req, res, callback) => {
   const id = req.user.cpf;
-  db.findOneAvisos('estoque_avisos', id, function(err, avisos) {
+  db.findAvisos('estoque_avisos', id, function(err, avisos) {
     if (err) {
       callback(err);
     } else if (!avisos) {

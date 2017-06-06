@@ -1,0 +1,164 @@
+Banco
+
+.\mongod --dbpath C:\Users\edsonfragnan\Desktop\estoque_loja\estoque_loja\estoque_loja\data\db
+
+use estoqueloja
+
+Collections
+
+db.createCollection("estoque_usuario");
+
+db.estoque_usuario.insert({
+  "matricula": "01",
+  "cargo": "Analista de Sistemas",
+  "nome": "Edson",
+  "sobrenome": "Fragnan",
+  "cpf": 39160843802,
+  "rg": 386752849,
+  "estado_civil": "Solteiro",
+  "email": "edsonl.fragnan@gmail.com",
+  "logradouro": "Rua Dom José",
+  "numero": "123",
+  "complemento": "Casa",
+  "bairro": "Carandiru",
+  "cidade": "São Paulo",
+  "uf": "SP",
+  "pais": "Brasil",
+  "cep": "02028000",
+  "senha": "123456"
+});
+
+db.estoque_usuario.find();
+db.estoque_usuario.find().pretty();
+
+db.createCollection("estoque_produtos");
+db.estoque_produtos.find().pretty();
+db.estoque_produtos.insert([
+  {
+    "id": "01",
+    "Nome": "Air Jordan",
+    "marca": "Nike",
+    "descricao": "Tênis de basquete.",
+    "categoria": "Esporte",
+    "valor": "R$ 8000,00",
+    "quantidade": "20",
+    "data_cadastro": "31/05/2017",
+    "cadastro": "Edson Luiz Fragnan"
+  },
+{
+  "id": "02",
+  "Nome": "Air Jordan",
+  "marca": "Nike",
+  "descricao": "Tênis de basquete.",
+  "categoria": "Esporte",
+  "valor": "R$ 1000,00",
+  "quantidade": "20",
+  "data_cadastro": "31/05/2017",
+  "cadastro": "Edson Luiz Fragnan"
+},{
+  "id": "03",
+  "Nome": "Air Jordan",
+  "marca": "Nike",
+  "descricao": "Tênis de basquete.",
+  "categoria": "Esporte",
+  "valor": "R$ 680,00",
+  "quantidade": "20",
+  "data_cadastro": "31/05/2017",
+  "cadastro": "Edson Luiz Fragnan"
+},{
+  "id": "04",
+  "Nome": "Air Jordan",
+  "marca": "Nike",
+  "descricao": "Tênis de basquete.",
+  "categoria": "Esporte",
+  "valor": "R$ 630,00",
+  "quantidade": "20",
+  "data_cadastro": "31/05/2017",
+  "cadastro": "Edson Luiz Fragnan"
+},{
+  "id": "05",
+  "Nome": "Air Jordan",
+  "marca": "Nike",
+  "descricao": "Tênis de basquete.",
+  "categoria": "Esporte",
+  "valor": "R$ 220,00",
+  "quantidade": "20",
+  "data_cadastro": "31/05/2017",
+  "cadastro": "Edson Luiz Fragnan"
+},{
+  "id": "06",
+  "Nome": "Air Jordan",
+  "marca": "Nike",
+  "descricao": "Tênis de basquete.",
+  "categoria": "Esporte",
+  "valor": "R$ 500,00",
+  "quantidade": "20",
+  "data_cadastro": "31/05/2017",
+  "cadastro": "Edson Luiz Fragnan"
+},{
+  "id": "07",
+  "Nome": "Air Jordan",
+  "marca": "Nike",
+  "descricao": "Tênis de basquete.",
+  "categoria": "Esporte",
+  "valor": "R$ 500,00",
+  "quantidade": "20",
+  "data_cadastro": "31/05/2017",
+  "cadastro": "Edson Luiz Fragnan"
+},{
+  "id": "08",
+  "Nome": "Air Jordan 2017",
+  "marca": "Nike",
+  "descricao": "Tênis de basquete.",
+  "categoria": "Esporte",
+  "valor": "R$ 500,00",
+  "quantidade": "20",
+  "data_cadastro": "31/05/2017",
+  "cadastro": "Edson Luiz Fragnan"
+},{
+  "id": "09",
+  "Nome": "Kobe Tênis",
+  "marca": "Nike",
+  "descricao": "Tênis de basquete.",
+  "categoria": "Esporte",
+  "valor": "R$ 500,00",
+  "quantidade": "20",
+  "data_cadastro": "31/05/2017",
+  "cadastro": "Edson Luiz Fragnan"
+},{
+  "id": "10",
+  "Nome": "Lebron Tênis",
+  "marca": "Nike",
+  "descricao": "Tênis de basquete.",
+  "categoria": "Esporte",
+  "valor": "R$ 500,00",
+  "quantidade": "20",
+  "data_cadastro": "31/05/2017",
+  "cadastro": "Edson Luiz Fragnan"
+}],
+  { ordered: true }
+);
+
+db.estoque_produtos.remove( { "id": "undefined"} );
+db.estoque_produtos.drop();
+
+db.createCollection("estoque_avisos");
+db.estoque_avisos.find({$eq: [{"id_cadastro":39160843802}]}).pretty();
+db.estoque_avisos.find({"id_cadastro": {$eq: 39160843802}}).pretty();
+
+db.estoque_avisos.insert([
+    {
+      "nome": "Ronaldo",
+      "data": "01/06/2017",
+      "titulo": "Entrega",
+      "descricao": "Entrega de mercadoria dia 27/10/2017, pela Nike."
+    },
+    {
+      "nome": "Anderson",
+      "data": "01/06/2017",
+      "titulo": "Bom dia do diretor",
+      "descricao": "Entrega de mercadoria dia 27/10/2017, pela Nike."
+    }
+  ],
+  { ordered: true }
+);

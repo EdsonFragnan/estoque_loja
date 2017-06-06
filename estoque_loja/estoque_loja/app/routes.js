@@ -3,6 +3,9 @@ const avisos = require('./controller/avisos');
 const respAvisos = require('./controller/meusAvisos')
 const cadAvisos = require('./controller/cadastroAviso');
 const cadProduto = require('./controller/cadastroProduto');
+const cadastroUser = require('./controller/cadastroUser');
+const deleteAvisos = require('./controller/deletaAvisos');
+const deletaProdutos = require('./controller/deletaProdutos');
 
 module.exports = function(app, passport) {
 
@@ -72,6 +75,12 @@ module.exports = function(app, passport) {
 		});
 	});
 
+	app.post('/cadastrousuario', isLoggedIn, function(req, res) {
+		cadastroUser.cadastroUser(req, res, (user) => {
+			console.log(user);
+		});
+	});
+
 	app.get('/cadastroaviso', isLoggedIn, function(req, res) {
 		res.render('cadastroaviso.ejs', {
 			user : req.user
@@ -79,17 +88,61 @@ module.exports = function(app, passport) {
 	});
 
 	app.get('/meusavisos', isLoggedIn, function(req, res) {
-		respAvisos.meusAvisos(req, res, (err, respAvisos) => {
+		respAvisos.meusAvisos(req, res, (err, data) => {
+			if (err != null) {
+					res.render('meusavisos.ejs', {
+					user: req.user,
+					mensagem: req.flash('loginMessage'),
+					avisosRes: ''
+				});
+			} else {
 				res.render('meusavisos.ejs', {
 					user: req.user,
-					avisosRes: respAvisos,
+					avisosRes: data,
 					mensagem: ''
 				});
+			}
 		});
 	});
 
+	app.delete('/meusavisos/:id_aviso', isLoggedIn, function(req, res) {
+		deleteAvisos.deletaAviso(req, res, (err, data) => {
+			if (err != null) {
+					res.render('meusavisos.ejs', {
+					user: req.user,
+					mensagem: req.flash('loginMessage'),
+					avisosRes: ''
+				});
+			} else {
+				res.redirect('/meusavisos');
+			}
+		});
+	});
+
+	app.delete('/listaprodutos/:id_produto', isLoggedIn, function(req, res) {
+		deletaProdutos.deletaProdutos(req, res, (err, data) => {
+			res.redirect('/listaprodutos');
+			/*if (err != null) {
+					res.render('listaprodutos.ejs', {
+					user: req.user,
+					mensagem: req.flash('loginMessage'),
+					avisosRes: ''
+				});
+			} else {
+				res.render('listaprodutos.ejs', {
+					user: req.user,
+					produtos: produtos
+				});
+			}*/
+		});
+	});
+
+
+
 	app.post('/cadastroaviso', isLoggedIn, function(req, res) {
-		cadAvisos.cadastroAviso(req, res, (avisos) => {});
+		cadAvisos.cadastroAviso(req, res, (avisos) => {
+			res.redirect('/index');
+		});
 	});
 
 	app.get('/logout', function(req, res) {
