@@ -94,6 +94,13 @@
                 <!-- /.row -->
 
                 <div class="row">
+                  <div class="col-lg-12">
+                    <ol class="breadcrumb">
+                        <li class="active">
+                          <i class="glyphicon glyphicon-menu-right"></i> Avisos
+                        </li>
+                    </ol>
+                  </div>
                   <% if(message.length > 0){ %>
                     <div class="col-lg-12">
                         <div class="alert alert-warning aviso"><h2><%= message %></h2></div>
@@ -101,7 +108,7 @@
                   <% } else{ %>
                     <% for(var i=0; i<avisos.length; i++) {%>
                       <div class="col-lg-4">
-                          <div class="panel panel-primary">
+                          <div class="<%= avisos[i].tipoAviso %>">
                               <div class="panel-heading">
                                   <h3 class="panel-title"><i class="glyphicon glyphicon-comment"></i> <%= avisos[i].titulo %></h3>
                               </div>

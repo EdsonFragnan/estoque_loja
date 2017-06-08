@@ -98,7 +98,7 @@
                       </h1>
                       <ol class="breadcrumb">
                           <li class="active">
-                              <i class="glyphicon glyphicon-menu-right"></i> meus avisos
+                              <i class="glyphicon glyphicon-menu-right"></i> Meus avisos
                           </li>
                       </ol>
                     </div>
@@ -109,7 +109,7 @@
                     <% } else{ %>
                       <% for(var i=0; i<avisosRes.length; i++) {%>
                         <div class="col-lg-4">
-                            <div class="panel panel-primary">
+                            <div class="<%= avisosRes[i].tipoAviso %>">
                                 <div class="panel-heading">
                                     <h3 class="panel-title"><i class="glyphicon glyphicon-comment"></i> <%= avisosRes[i].titulo %></h3>
                                 </div>

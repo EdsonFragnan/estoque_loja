@@ -6,6 +6,7 @@ const cadProduto = require('./controller/cadastroProduto');
 const cadastroUser = require('./controller/cadastroUser');
 const deleteAvisos = require('./controller/deletaAvisos');
 const deletaProdutos = require('./controller/deletaProdutos');
+const alteraPerfil = require('./controller/alteraPerfil');
 
 module.exports = function(app, passport) {
 
@@ -43,16 +44,42 @@ module.exports = function(app, passport) {
 
 	app.get('/profile', isLoggedIn, function(req, res) {
 		res.render('profile.ejs', {
-			user : req.user
+			user : req.user,
+			mensagem: ''
 		});
 	});
 
+	app.patch('/profile', isLoggedIn, function(req, res) {
+		alteraPerfil.alteraPerfil(req, res, (err, resp) => {
+			if (err) {
+				res.render('profile.ejs', {
+					user: req.user,
+					mensagem: '<h3 class="bg-danger alerta">Alteração não realizada.</h3>'
+				});
+			} else {
+				res.render('profile.ejs', {
+					user: req.user,
+					mensagem: '<h3 class="bg-success alerta">' + req.flash('loginMessage') + ' <small>Atualize a página para ver a alteração.</small></h3>'
+				});
+			}
+		});
+	});
+
+
 	app.get('/listaprodutos', isLoggedIn, function(req, res) {
-		produtos.listarProdutos(req, res, (produtos) => {
-			res.render('listaprodutos.ejs', {
-				user: req.user,
-				produtos: produtos
-			});
+		produtos.listarProdutos(req, res, (err, produtos) => {
+			if (err != null) {
+				res.render('listaprodutos.ejs', {
+					user: req.user,
+					mensagem: req.flash('loginMessage')
+				});
+			} else {
+				res.render('listaprodutos.ejs', {
+					user: req.user,
+					mensagem: '',
+					produtos: produtos
+				});
+			}
 		});
 
 	});
@@ -64,20 +91,30 @@ module.exports = function(app, passport) {
 	});
 
 	app.post('/cadastroproduto', isLoggedIn, function(req, res) {
-		cadProduto.cadastroProduto(req, res, (produto) => {
-		});
+		cadProduto.cadastroProduto(req, res, (produto) => {});
 	});
 
 
 	app.get('/cadastrousuario', isLoggedIn, function(req, res) {
 		res.render('cadastrousuario.ejs', {
-			user : req.user
+			user: req.user,
+			mensagem: ''
 		});
 	});
 
 	app.post('/cadastrousuario', isLoggedIn, function(req, res) {
-		cadastroUser.cadastroUser(req, res, (user) => {
-			console.log(user);
+		cadastroUser.cadastroUser(req, res, (err, resp) => {
+			if (err != null) {
+				res.render('cadastrousuario.ejs', {
+					user : req.user,
+					mensagem: '<h3 class="bg-danger alerta">'+req.flash('loginMessage')+'</h3>'
+				});
+			} else {
+				res.render('cadastrousuario', {
+					user : req.user,
+					mensagem: '<h3 class="bg-success alerta">' + req.flash('loginMessage') +'</h3>'
+				});
+			}
 		});
 	});
 

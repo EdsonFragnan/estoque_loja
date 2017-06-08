@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Sistema de controle de estoque.">
     <meta name="author" content="Edson Luiz Fragnan">
+    <script src="js/jquery.js"></script>
 
     <title>Administrativo - Estoque loja.</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -22,7 +23,17 @@
 			.iconDados {
 				float: right;
 			}
+      .alerta {
+        text-align: center;
+        padding: 10px;
+      }
 		</style>
+    <script>
+      $(function(){
+        var valorDaDiv = $(".mensagemResp").text();
+        $(".mensagemResp").html(valorDaDiv);
+      });
+    </script>
 </head>
 
 <body>
@@ -95,26 +106,142 @@
 						              <img src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" width="200" height="200" class="img-responsive" alt="Generic placeholder thumbnail">
 													<hr>
 													<p>* caso ache necessário, você poderá alterar seus dados caso eles estejam inválidos.</p>
+                          <br />
+                          <a type="button" class="btn btn-success" data-toggle="modal" data-target="#myModal">Alterar dados</a>
 						            </div>
 			                </div>
 
+                      <div id="myModal" class="modal fade" role="dialog">
+                        <div class="modal-dialog">
+
+                          <!-- Modal content-->
+                          <div class="modal-content">
+                            <div class="modal-header">
+                              <button type="button" class="close" data-dismiss="modal">&times;</button>
+                              <h3>Dados para alteração.</h3>
+                            </div>
+                            <div class="modal-body">
+                              <form method="POST" action="/profile">
+                                <input type="hidden" name="_method" value="PATCH"/>
+                                <div class="col-lg-12">
+                                  <div class="col-lg-6">
+                                    <div class="form-group">
+                                    	<label>
+                                				<span>Nome: </span>
+                                			</label>
+                                			<input type="text" class="form-control" name="nome" placeholder="Nome" value="<%= user.nome %>" required>
+                                		</div>
+
+                                    <div class="form-group">
+                                			<label>
+                                				<span>CPF:</span>
+                                			</label>
+                                			<input type="text" class="form-control" name="cpf" placeholder="CPF" value="<%= user.cpf %>" required>
+                                		</div>
+
+                                    <div class="form-group">
+                                			<label>
+                                				<span>E-mail:</span>
+                                			</label>
+                                			<input type="email" class="form-control" name="email"  placeholder="E-mail" value="<%= user.email %>" required>
+                                		</div>
+
+                                    <div class="form-group">
+                                			<label>
+                                				<span>Logradouro:</span>
+                                			</label>
+                                			<input type="text" class="form-control" name="logradouro"  placeholder="Logradouro" value="<%= user.logradouro %>" required>
+                                		</div>
+
+                                    <div class="form-group">
+                                      <label>
+                                        <span>Complemento:</span>
+                                      </label>
+                                      <input type="text" class="form-control" name="complemento"  placeholder="Complemento" value="<%= user.complemento %>" required>
+                                    </div>
+
+                                    <div class="form-group">
+                                			<label>
+                                				<span>Bairro:</span>
+                                			</label>
+                                			<input type="text" class="form-control" name="bairro"  placeholder="Bairro" value="<%= user.bairro %>" required>
+                                		</div>
+                                </div>
+
+                              <div class="col-lg-6">
+                                  <div class="form-group">
+                                    <label>
+                                      <span>Sobrenome:</span>
+                                    </label>
+                                    <input type="text" class="form-control" name="sobrenome" placeholder="Sobrenome" value="<%= user.sobrenome %>" required>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label>
+                                      <span>RG:</span>
+                                    </label>
+                                    <input type="text" class="form-control" name="rg" placeholder="RG" value="<%= user.rg %>" required>
+                                  </div>
+
+                                  <div class="form-group">
+                              			<label>
+                              				<span>Senha:</span>
+                              			</label>
+                              			<input type="text" class="form-control" name="senha" placeholder="Senha" value="<%= user.senha %>" required>
+                              		</div>
+
+                                  <div class="form-group">
+                                    <label>
+                                      <span>Cargo:</span>
+                                    </label>
+                                    <input type="text" class="form-control" name="cargo" placeholder="Cargo" value="<%= user.cargo %>" required>
+                                  </div>
+
+                                  <div class="form-group">
+                                    <label>
+                                      <span>CEP:</span>
+                                    </label>
+                                    <input type="text" class="form-control" name="cep" placeholder="CEP" value="<%= user.cep %>" required>
+                                  </div>
+                                  <div class="form-group">
+                                    <label>
+                                      <span>UF:</span>
+                                    </label>
+                                    <input type="text" class="form-control" name="uf" placeholder="UF" value="<%= user.uf %>" required>
+                                  </div>
+                                </div>
+                            </div>
+
+                          </div>
+                            <div class="modal-footer">
+                              <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                              <button type="submit" class="btn btn-success">Alterar dados</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
 											<div class="col-lg-9">
-												<br>
+                        <div class="mensagemResp">
+                          <%= mensagem %>
+                          <br />
+                        </div>
+                        <br />
 												<h4>Meus dados: </h4>
 												<hr>
 												<div>
 													<p><strong>Id</strong>: <%= user._id %></p><hr>
-													<p><strong>Nome</strong>: <%= user.nome %> <span class="glyphicon glyphicon-edit iconDados"></span></p><hr>
-													<p><strong>Sobrenome</strong>: <%= user.sobrenome %> <span class="glyphicon glyphicon-edit iconDados"></p><hr>
-													<p><strong>CPF</strong>: <%= user.cpf %> <span class="glyphicon glyphicon-edit iconDados"></p><hr>
-													<p><strong>RG</strong>: <%= user.rg %> <span class="glyphicon glyphicon-edit iconDados"></p><hr>
-													<p><strong>Email</strong>: <%= user.email %> <span class="glyphicon glyphicon-edit iconDados"></p><hr>
-													<p><strong>Logradouro</strong>: <%= user.logradouro %> <span class="glyphicon glyphicon-edit iconDados"></p><hr>
-													<p><strong>Complemento</strong>: <%= user.complemento %> <span class="glyphicon glyphicon-edit iconDados"></p><hr>
-													<p><strong>Bairro</strong>: <%= user.bairro %> <span class="glyphicon glyphicon-edit iconDados"></p><hr>
-													<p><strong>UF</strong>: <%= user.uf %> <span class="glyphicon glyphicon-edit iconDados"></p><hr>
-													<p><strong>CEP</strong>: <%= user.cep %> <span class="glyphicon glyphicon-edit iconDados"></p><hr>
-													<p><strong>Senha</strong>: <%= user.senha %> <span class="glyphicon glyphicon-edit iconDados"></p>
+													<p><strong>Nome</strong>: <%= user.nome %></p><hr>
+													<p><strong>Sobrenome</strong>: <%= user.sobrenome %> </p><hr>
+													<p><strong>CPF</strong>: <%= user.cpf %> </p><hr>
+													<p><strong>RG</strong>: <%= user.rg %> </p><hr>
+													<p><strong>Email</strong>: <%= user.email %> </p><hr>
+													<p><strong>Logradouro</strong>: <%= user.logradouro %> </p><hr>
+													<p><strong>Complemento</strong>: <%= user.complemento %> </p><hr>
+													<p><strong>Bairro</strong>: <%= user.bairro %> </p><hr>
+													<p><strong>UF</strong>: <%= user.uf %> </p><hr>
+													<p><strong>CEP</strong>: <%= user.cep %> </p><hr>
+													<p><strong>Senha</strong>: <%= user.senha %> </p>
 												</div>
 											</div>
 										</div>
@@ -138,9 +265,6 @@
 												</p>
 											</div>
 										</div>
-
-
-
                   </div>
                 </div>
 
@@ -150,7 +274,6 @@
 
     </div>
 
-    <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
 </body>

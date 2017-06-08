@@ -18,8 +18,10 @@
       .table thead tr th {
         text-align: center;
       }
-
       .table tbody tr td {
+        text-align: center;
+      }
+      .aviso {
         text-align: center;
       }
     </style>
@@ -104,43 +106,51 @@
                           <i class="glyphicon glyphicon-menu-right"></i> Lista de produtos
                         </li>
                     </ol>
-                    <table class="table table-hover">
-                        <thead>
-                          <tr>
-                            <th>ID</th>
-                            <th>Nome</th>
-                            <th>Marca</th>
-                            <th>Descrição</th>
-                            <th>Categoria</th>
-                            <th>Valor</th>
-                            <th>Quantidade</th>
-                            <th>Data cadastro</th>
-                            <th>Cadastro por</th>
-                            <th>Ações</th>
-                          </tr>
-                        </thead>
-                        <tbody>
-                          <% for(var i=0; i<produtos.length; i++) {%>
-                            <tr>
-                                 <td><%= produtos[i].id %></td>
-                                 <td><%= produtos[i].Nome %></td>
-                                 <td><%= produtos[i].marca %></td>
-                                 <td><%= produtos[i].descricao %></td>
-                                 <td><%= produtos[i].categoria %></td>
-                                 <td><%= produtos[i].valor %></td>
-                                 <td><%= produtos[i].quantidade %></td>
-                                 <td><%= produtos[i].data_cadastro %></td>
-                                 <td><%= produtos[i].cadastro %></td>
-                                 <td>
-                                   <a type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger deletaAviso" id="<%= produtos[i].id %>" onclick="valProduto(this.id)">
-                                     <span class="glyphicon glyphicon-trash"></span>
-                                   </a>
-                                 </td>
-                            </tr>
-                          <% } %>
-                        </tbody>
-                      </table>
-                    </div>
+                    <% if(mensagem.length > 0){ %>
+                      <div class="alert alert-warning aviso"><h2><%= mensagem %></h2></div>
+                    <% } else{ %>
+                      <% for(var i=0; i<produtos.length; i++) {%>
+                        <div class="table-responsive">
+                          <table class="table table-hover">
+                              <thead>
+                                <tr>
+                                  <th>ID</th>
+                                  <th>Nome</th>
+                                  <th>Marca</th>
+                                  <th>Descrição</th>
+                                  <th>Categoria</th>
+                                  <th>Valor</th>
+                                  <th>Quantidade</th>
+                                  <th>Data cadastro</th>
+                                  <th>Cadastro por</th>
+                                  <th>Ações</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <% for(var i=0; i<produtos.length; i++) {%>
+                                  <tr>
+                                       <td><%= produtos[i].id %></td>
+                                       <td><%= produtos[i].Nome %></td>
+                                       <td><%= produtos[i].marca %></td>
+                                       <td><%= produtos[i].descricao %></td>
+                                       <td><%= produtos[i].categoria %></td>
+                                       <td><%= produtos[i].valor %></td>
+                                       <td><%= produtos[i].quantidade %></td>
+                                       <td><%= produtos[i].data_cadastro %></td>
+                                       <td><%= produtos[i].cadastro %></td>
+                                       <td>
+                                         <a type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger deletaAviso" id="<%= produtos[i].id %>" onclick="valProduto(this.id)">
+                                           <span class="glyphicon glyphicon-trash"></span>
+                                         </a>
+                                       </td>
+                                  </tr>
+                                <% } %>
+                              </tbody>
+                            </table>
+                          </div>
+                      <% } %>
+                    <% } %>
+                  </div>
                 </div>
 
             </div>

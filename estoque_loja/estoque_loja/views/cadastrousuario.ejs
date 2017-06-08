@@ -14,6 +14,22 @@
     <link href="css/sb-admin.css" rel="stylesheet">
     <link href="css/plugins/morris.css" rel="stylesheet">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <script src="js/jquery.js"></script>
+
+    <script>
+      $(function() {
+        var valorDaDiv = $(".mensagemResp").text();
+        $(".mensagemResp").html(valorDaDiv);
+      });
+    </script>
+
+    <style>
+      .alerta {
+        text-align: center;
+        padding: 10px;
+
+      }
+		</style>
 </head>
 
 <body>
@@ -87,6 +103,9 @@
                               <i class="glyphicon glyphicon-menu-right"></i> Cadastro usuário
                           </li>
                       </ol>
+                      <div class="mensagemResp">
+                        <%= mensagem %>
+                      </div>
                     </div>
                     <br />
                     <form action="/cadastrousuario" method="post">
@@ -168,7 +187,7 @@
                     			<label>
                     				<span>Senha:</span>
                     			</label>
-                    			<input type="text" class="form-control" name="senha" placeholder="Senha" required>
+                    			<input type="password" class="form-control" name="senha" placeholder="Senha" required>
                     		</div>
 
                         <div class="form-group">
@@ -200,7 +219,6 @@
 
     </div>
 
-    <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
 
 </body>

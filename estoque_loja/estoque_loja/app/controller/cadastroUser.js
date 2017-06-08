@@ -29,11 +29,11 @@ module.exports.cadastroUser = (req, res, callback) => {
     'cep': req.body.cep
   };
 
-  db.insertOne(request, 'estoque_usuario', function(err, avisos) {
+  db.insertOne(request, 'estoque_usuario', function(err, data) {
     if (err) {
-      return callback(err);
+      return callback(req.flash('loginMessage', 'Usuário não cadastrado.'));
     } else {
-      return callback('Usuário cadastrado com sucesso.');
+      return callback(null, req.flash('loginMessage', 'Usuário cadastrado com sucesso.'));
     }
   });
 }

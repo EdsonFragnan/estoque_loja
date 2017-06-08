@@ -10,7 +10,6 @@ const access = (callback) => {
   });
 };
 
-
 module.exports = {
 
   findOne: (request, callback) => {
@@ -95,6 +94,23 @@ module.exports = {
         });
       }
     });
-  }
+  },
+
+  updateOne: (request, collectionAccess, callback) => {
+    access((err, db) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        operations.execUpdateOne(db, collectionAccess, request, (err, data) => {
+          if (err) {
+            callback(err, null);
+          } else {
+            callback(null, data);
+          }
+        });
+      }
+    });
+  },
+
 
 };

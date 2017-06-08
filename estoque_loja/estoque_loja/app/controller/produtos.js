@@ -5,11 +5,11 @@ module.exports.listarProdutos = (req, res, callback) => {
     if (err) {
       return res(err);
     } else if (!produtos) {
-      res(req.flash('loginMessage', 'Lista vazia.'));
+      callback(req.flash('loginMessage', 'Lista vazia.'), null);
     } else if (produtos.length === 0) {
-      res(req.flash('loginMessage', 'Lista vazia.'));
+      callback(req.flash('loginMessage', 'Lista vazia.'), null);
     } else {
-      return callback(produtos);
+      return callback(null, produtos);
     }
   });
 }

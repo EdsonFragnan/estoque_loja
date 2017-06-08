@@ -51,5 +51,15 @@ module.exports = {
         callback(null, data);
       }
     });
+  },
+
+  execUpdateOne: (db, collectionAccess, req, callback) => {
+    db.collection(collectionAccess).updateOne({cpf: req.cpf}, {$set:req}, (err, data) => {
+      if (err) {
+        callback(err, null);
+      } else {
+        callback(null, data);
+      }
+    });
   }
 }
