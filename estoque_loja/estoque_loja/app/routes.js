@@ -86,12 +86,25 @@ module.exports = function(app, passport) {
 
 	app.get('/cadastroproduto', isLoggedIn, function(req, res) {
 		res.render('cadastroproduto.ejs', {
-			user : req.user
+			user : req.user,
+			mensagem: ''
 		});
 	});
 
 	app.post('/cadastroproduto', isLoggedIn, function(req, res) {
-		cadProduto.cadastroProduto(req, res, (produto) => {});
+		cadProduto.cadastroProduto(req, res, (err, produto) => {
+			if (err != null) {
+				res.render('cadastroproduto.ejs', {
+					user: req.user,
+					mensagem: '<h3 class="bg-danger alerta">'+ req.flash('loginMessage') +'</h3>'
+				});
+			} else {
+				res.render('cadastroproduto.ejs', {
+					user: req.user,
+					mensagem: '<h3 class="bg-success alerta">' + req.flash('loginMessage') + '</h3>'
+				});
+			}
+		});
 	});
 
 

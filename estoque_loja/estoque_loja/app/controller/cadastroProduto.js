@@ -27,9 +27,9 @@ module.exports.cadastroProduto = (req, res, callback) => {
 
   db.insertOne(request, 'estoque_produtos', function(err, avisos) {
     if (err) {
-      return res(err);
+      return callback(req.flash('loginMessage', 'Erro ao cadastrar o produto.'), null);
     } else {
-      return callback('Aviso cadastrado com sucesso.');
+      return callback(null, req.flash('loginMessage', 'Produto cadastrado com sucesso'));
     }
   });
 }

@@ -33,7 +33,11 @@ app.configure(() => {
     next();
   });
 });
-
 require('./app/routes.js')(app, passport);
+
+app.use(function(req, res, next) {
+  res.status(404).render('404.ejs');
+});
+
 app.listen(port);
 console.log('Sistema online na porta: ' + port);
