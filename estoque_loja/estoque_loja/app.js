@@ -6,6 +6,8 @@ const flash = require('connect-flash');
 const path = require('path');
 const bodyParser = require('body-parser');
 const configDB = require('./config/db.js');
+const http = require('http').Server(app);
+const io = require('socket.io')(http);
 
 require('./app/controller/login')(passport);
 
@@ -39,5 +41,7 @@ app.use(function(req, res, next) {
   res.status(404).render('404.ejs');
 });
 
-app.listen(port);
+app.set('io', io);
+
+http.listen(port);
 console.log('Sistema online na porta: ' + port);

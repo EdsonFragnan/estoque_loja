@@ -28,15 +28,14 @@ module.exports = function(app, passport) {
 		avisos.listarAvisos(req, res, (err, avisos) => {
 			if (err != null) {
 					res.render('index.ejs', {
-					user: req.user,
-					message: req.flash('loginMessage'),
-					avisos: ''
+						user: req.user,
+						message: req.flash('loginMessage'),
+						avisos: ''
 				});
 			} else {
 				res.render('index.ejs', {
 					user: req.user,
-					avisos: avisos,
-					message: ''
+					avisos: avisos,message: ''
 				});
 			}
 		});
@@ -44,7 +43,7 @@ module.exports = function(app, passport) {
 
 	app.get('/profile', isLoggedIn, function(req, res) {
 		res.render('profile.ejs', {
-			user : req.user,
+			user: req.user,
 			mensagem: ''
 		});
 	});
@@ -86,7 +85,7 @@ module.exports = function(app, passport) {
 
 	app.get('/cadastroproduto', isLoggedIn, function(req, res) {
 		res.render('cadastroproduto.ejs', {
-			user : req.user,
+			user: req.user,
 			mensagem: ''
 		});
 	});
@@ -119,12 +118,12 @@ module.exports = function(app, passport) {
 		cadastroUser.cadastroUser(req, res, (err, resp) => {
 			if (err != null) {
 				res.render('cadastrousuario.ejs', {
-					user : req.user,
+					user: req.user,
 					mensagem: '<h3 class="bg-danger alerta">'+req.flash('loginMessage')+'</h3>'
 				});
 			} else {
 				res.render('cadastrousuario', {
-					user : req.user,
+					user: req.user,
 					mensagem: '<h3 class="bg-success alerta">' + req.flash('loginMessage') +'</h3>'
 				});
 			}
@@ -133,7 +132,8 @@ module.exports = function(app, passport) {
 
 	app.get('/cadastroaviso', isLoggedIn, function(req, res) {
 		res.render('cadastroaviso.ejs', {
-			user : req.user
+			user : req.user,
+			menu: req.user
 		});
 	});
 
@@ -191,6 +191,7 @@ module.exports = function(app, passport) {
 
 	app.post('/cadastroaviso', isLoggedIn, function(req, res) {
 		cadAvisos.cadastroAviso(req, res, (avisos) => {
+			app.get('io').emit('novoAviso');
 			res.redirect('/index');
 		});
 	});

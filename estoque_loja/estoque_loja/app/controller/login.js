@@ -8,7 +8,7 @@ module.exports = function(passport) {
 
     passport.deserializeUser(function(usuario, done) {
         db.findOne(usuario.matricula, function(err, user) {
-            done(err, user);
+          done(err, user);
         });
     });
 

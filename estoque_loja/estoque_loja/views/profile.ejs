@@ -73,19 +73,19 @@
                     <li>
                       <a href="/index"><span class="glyphicon glyphicon-home"></span> Início</a>
                     </li>
-                    <li>
+                    <li id="produtos">
                       <a href="/listaprodutos"><span class="glyphicon glyphicon-menu-right"></span> Lista produtos</a>
                     </li>
-                    <li>
+                    <li id="cadProduto">
                       <a href="/cadastroproduto"><span class="glyphicon glyphicon-menu-right"></span> Cadastro produto</a>
                     </li>
-                    <li>
+                    <li id="cadUsuario">
                       <a href="/cadastrousuario"><span class="glyphicon glyphicon-menu-right"></span> Cadastro usuário</a>
                     </li>
-                    <li>
+                    <li id="meuAvisos">
                       <a href="/cadastroaviso"><span class="glyphicon glyphicon-menu-right"></span> Cadastro aviso</a>
                     </li>
-                    <li>
+                    <li id="cadAvisos">
                       <a href="/meusavisos"><span class="glyphicon glyphicon-menu-right"></span> Meus avisos</a>
                     </li>
                 </ul>
@@ -275,6 +275,20 @@
     </div>
 
     <script src="js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      $(function() {
+        var data = '<%= user.tipoUsuario %>';
+        if (data === 'admin') {
+          console.log();
+        } else {
+          $("#cadProduto").remove();
+          $("#cadUsuario").remove();
+          $("#meuAvisos").remove();
+          $("#cadAvisos").remove();
+          $("#produtos").remove();
+        }
+      });
+    </script>
 
 </body>
 
