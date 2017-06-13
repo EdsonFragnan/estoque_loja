@@ -141,6 +141,18 @@
             <!-- /.container-fluid -->
 
         </div>
+        <div id="myModal" class="modal fade" role="dialog">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+              </div>
+              <div class="modal-body">
+                <h3>Você tem um novo aviso!</h3>
+              </div>
+            </div>
+          </div>
+        </div>
 
     </div>
 
@@ -162,9 +174,10 @@
 
       var socket = io();
       socket.on('novoAviso', function(data) {
-        alert('Você tem um novo aviso!');
+        $('#myModal').modal('show'); 
       });
     </script>
+
 
 </body>
 
