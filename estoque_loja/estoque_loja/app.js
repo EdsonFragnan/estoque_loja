@@ -44,4 +44,4 @@ app.use(function(req, res, next) {
 app.set('io', io);
 
 http.listen(port);
-console.log('Sistema online na porta: ' + port);
+console.log('Sistema rodando no heroku');

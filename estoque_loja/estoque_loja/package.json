@@ -12,5 +12,11 @@
     "passport-local": "~0.1.6",
     "path": "^0.12.7",
     "socket.io": "^2.0.3"
+  },
+  "engines": {
+    "node": "7.10.0"
+  },
+  "scripts": {
+    "start": "node app"
   }
 }

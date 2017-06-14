@@ -2,7 +2,7 @@ const MongoClient = require('mongodb').MongoClient;
 
 module.exports = {
   connection: (callback) => {
-    const caminho = 'mongodb://127.0.0.1:27017/estoqueloja';
+    const caminho = 'mongodb://heroku_s6mfc484:AEJ151618@ds157040.mlab.com:57040/heroku_s6mfc484';
     MongoClient.connect(caminho, (err, db) => {
       if (err) {
         callback(err, null);
