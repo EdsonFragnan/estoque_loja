@@ -41,6 +41,10 @@ app.use(function(req, res, next) {
   res.status(404).render('404.ejs');
 });
 
+app.use(function(error,req, res, next) {
+  res.status(500).render('500.ejs');
+});
+
 app.set('io', io);
 
 http.listen(port);

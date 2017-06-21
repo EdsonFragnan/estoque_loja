@@ -70,24 +70,7 @@
 
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
-                    <li>
-                      <a href="/index"><span class="glyphicon glyphicon-home"></span> Início</a>
-                    </li>
-                    <li id="produtos">
-                      <a href="/listaprodutos"><span class="glyphicon glyphicon-menu-right"></span> Lista produtos</a>
-                    </li>
-                    <li id="cadProduto">
-                      <a href="/cadastroproduto"><span class="glyphicon glyphicon-menu-right"></span> Cadastro produto</a>
-                    </li>
-                    <li id="cadUsuario">
-                      <a href="/cadastrousuario"><span class="glyphicon glyphicon-menu-right"></span> Cadastro usuário</a>
-                    </li>
-                    <li id="meuAvisos">
-                      <a href="/cadastroaviso"><span class="glyphicon glyphicon-menu-right"></span> Cadastro aviso</a>
-                    </li>
-                    <li id="cadAvisos">
-                      <a href="/meusavisos"><span class="glyphicon glyphicon-menu-right"></span> Meus avisos</a>
-                    </li>
+                  <%- menu %>
                 </ul>
             </div>
         </nav>
@@ -166,6 +149,13 @@
                                 			</label>
                                 			<input type="text" class="form-control" name="bairro"  placeholder="Bairro" value="<%= user.bairro %>" required>
                                 		</div>
+
+                                    <div class="form-group">
+                                      <label>
+                                        <span>Data cadastro:</span>
+                                      </label>
+                                      <input type="text" class="form-control" name="uf" placeholder="UF" value="<%= user.data_cadastro %>" required>
+                                    </div>
                                 </div>
 
                               <div class="col-lg-6">
@@ -241,28 +231,9 @@
 													<p><strong>Bairro</strong>: <%= user.bairro %> </p><hr>
 													<p><strong>UF</strong>: <%= user.uf %> </p><hr>
 													<p><strong>CEP</strong>: <%= user.cep %> </p><hr>
+                          <p><strong>Data cadastro</strong>: <%= user.data_cadastro %> </p><hr>
 													<p><strong>Senha</strong>: <%= user.senha %> </p>
 												</div>
-											</div>
-										</div>
-
-										<div class="col-lg-12">
-											<br>
-											<div class="col-lg-12">
-												<h4>Cargo: <%= user.cargo %></h5>
-												<hr>
-												<p class="bg-success cargo"><strong>O que faz um analista de sistemas?</strong>
-													<br />O analista de sistemas transforma um problema em uma solução através do uso de sistemas e recursos computacionais de hardware (parte física) ou software (parte lógica). O profissional dessa área é responsável por analisar, documentar, projetar e muitas vezes até programar e testar sistemas da informação. O analista pode escolher entre diversos ramos de atuação, entre eles estão:
-												</p>
-												<p class="bg-info cargo"><strong>Produção de software</strong>
-													<br />Na área de software o analista tem o papel de participar nas etapas de documentação, arquitetura, desenvolvimento, testes e evolução de sistemas de software. É imprescindível que tenha conhecimentos em engenharia de software e saiba como utilizar ferramentas case para apoiar o processo de produção.
-												</p>
-												<p class="bg-success cargo"><strong>Infraestrutura de TI</strong>
-													<br />Na parte de infraestrutura o analista é responsável por implementar soluções computacionais utilizando-se de recursos de hardware como: parques computacionais, infraestruturas de rede, integrações entre hardware e software, dessa forma poderá atender as necessidades tecnológicas das empresas.
-												</p>
-												<p class="bg-info cargo"><strong>Negócios</strong>
-													<br />O analista de sistemas muitas vezes pode fazer o papel de analista de negócios, participando de reuniões e briefings com clientes, levantando requisitos e especificando casos de uso. É desejável que o analista de sistemas tenha visão de negócios, dessa forma poderá entender melhor seus clientes e encontrar soluções empreendedoras.
-												</p>
 											</div>
 										</div>
                   </div>
@@ -275,20 +246,7 @@
     </div>
 
     <script src="js/bootstrap.min.js"></script>
-    <script type="text/javascript">
-      $(function() {
-        var data = '<%= user.tipoUsuario %>';
-        if (data === 'admin') {
-          console.log();
-        } else {
-          $("#cadProduto").remove();
-          $("#cadUsuario").remove();
-          $("#meuAvisos").remove();
-          $("#cadAvisos").remove();
-          $("#produtos").remove();
-        }
-      });
-    </script>
+    <script type="text/javascript" src="/meuJs/apoio.js"></script>
 
 </body>
 
