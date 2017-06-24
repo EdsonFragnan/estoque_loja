@@ -1,9 +1,10 @@
 const db = require('../../metodos/metodos.js');
+const moment = require('moment');
 
 module.exports.cadastroAviso = (req, res, callback) => {
   const request = {
     "nome": req.user.nome,
-    "data": new Date(),
+    "data": moment().locale('pt-br').format('L'),
     "titulo": req.body.titulo,
     "descricao": req.body.descricao,
     "id_cadastro": req.user.cpf,

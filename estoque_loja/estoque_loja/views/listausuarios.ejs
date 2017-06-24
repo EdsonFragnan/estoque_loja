@@ -111,7 +111,7 @@
                                      <td><%= usuarios[i].sobrenome %></td>
                                      <td><%= usuarios[i].cargo %></td>
                                      <td><%= usuarios[i].tipoUsuario %></td>
-                                     <td><%= usuarios[i].data_cadastro %></td>
+                                     <td class="dataAdmissao"><%= usuarios[i].data_cadastro %></td>
                                      <td>
                                        <a type="button" data-toggle="modal" data-target="#myModal" class="btn btn-danger deletaUsuario" id="<%= usuarios[i].cpf %>" onclick="idUsuario(this.id)">
                                          <span class="glyphicon glyphicon-trash"></span>
@@ -151,6 +151,14 @@
 
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script src="js/moment/moment.js"></script>
+    <script>
+      $(document).ready(function(){
+        var contents = $('.dataAdmissao');
+        var dataMontada = moment(contents).format('DD/MM/YYYY');
+        $(".dataAdmissao").html(dataMontada);
+      });
+    </script>
     <script type="text/javascript" src="/meuJs/apoio.js"></script>
 
 </body>
